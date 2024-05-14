@@ -1,0 +1,126 @@
+==============================
+VIRTUAL ENVIRONMENT CREATION
+==============================
+
+---------------------
+Fundamentals
+---------------------
+
+1. It's different to manage the venv in a CLI such as CMD or
+powershell.
+
+2. The executable to activate the venv depends on the machine
+and CLI we're on.
+
+3. Commands: 
+- pip list
+# Lists all the the installed pacakges
+
+- pip --version
+- python version
+# cmd Commands
+
+- dir 
+# lists all the files and folders of the cwd.
+
+- cd 
+# Changes the cwd.
+
+- python -m venv my_env
+# Creates the whole venv folder and files.
+
+- path\to\env\Scripts\activate.bat
+# Activate virtual environment on Windows!!!
+
+- pip install package_name
+
+- pip deactivate.bat
+
+---------------------
+Subheading or Section
+---------------------
+
+Text goes here for the section. You can use normal prose.
+
+Another Section
+---------------
+
+More text for this section.
+
+* Item 1
+* Item 2
+  - Sub-item 1
+  - Sub-item 2
+
+Numbered Items:
+
+1. First item
+2. Second item
+3. Third item
+
+--------------------------
+Code Section (for example)
+--------------------------
+
+    import numpy as np
+
+    data = np.array([1, 2, 3, 4])
+    mean = np.mean(data)
+
+-------------------------------------------
+Link Section (URLs displayed in plain text)
+-------------------------------------------
+
+GitHub: http://github.com
+
+-----------------
+Quotes or Highlights
+-----------------
+
+> "This is a quote from someone notable."
+
+-----------------
+End of Document
+-----------------
+
+
+Another Section
+---------------
+
+More text for this section.
+
+* Item 1
+* Item 2
+  - Sub-item 1
+  - Sub-item 2
+
+Numbered Items:
+
+1. First item
+2. Second item
+3. Third item
+
+--------------------------
+Code Section (for example)
+--------------------------
+
+    import numpy as np
+
+    data = np.array([1, 2, 3, 4])
+    mean = np.mean(data)
+
+-------------------------------------------
+Link Section (URLs displayed in plain text)
+-------------------------------------------
+
+GitHub: http://github.com
+
+-----------------
+Quotes or Highlights
+-----------------
+
+> "This is a quote from someone notable."
+
+-----------------
+End of Document
+-----------------
