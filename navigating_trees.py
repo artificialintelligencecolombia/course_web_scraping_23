@@ -7,4 +7,3 @@ html = urlopen(url)
 bsObj = BeautifulSoup(html, 'html.parser')
 
 for child in bsObj.find("table",{"id":"giftList"}).children:
-    print(f"Table row: {child}\n")

@@ -1,0 +1,83 @@
+==============================
+CONTROL VERSIONS MANAGEMENT
+==============================
+
+-----------------
+**1.LAPTOP STEP BY STEP.**
+-----------------
+
+GOAL: to work on a project from multiple machines.
+
+1.Create new branch
+---------------
+Create a new branch on the current machine. This branch will have the changes from this machine.
+
+git checkout -b laptop
+
+2.Fetch changes
+---------------
+Download updates from the remote but doesnt merge the into the current branch. checks for updates without altering the local.
+git fetch origin
+
+Visualize Branches
+---------------
+
+git log --oneline --graph --decorate --all
+
+3.Compare branches
+---------------
+Compare the local working branch with the remote tracking branch
+git diff <branch>/<branch> 
+
+5.Push New Branch to Remote
+---------------
+Pushes the laptop branch to the remote repo, saving changes without affecting the main branch.
+git push origin laptop
+
+
+---------------------
+**2.DESKTOP STEP BY STEP**
+---------------------
+
+1. Fetch changes from remote.
+---------------
+This will bring any updates to other branches from the remote repository.
+git fetch origin
+
+2. Update local branches
+---------------
+Switch to 'main' branch and merge any new changes from the remote.
+git checkout main
+git merge origin/main
+> NOTE: if iv've working on 'laptop' branch and want to have it locally:
+git checkout -b laptop origin/main
+
+
+---------------------
+**3.ON THE LAPTOP
+---------------------
+
+1.Fetch changes from remote
+---------------
+Ensure local copy is up to date.
+git fetch origin
+
+2. Update the local branches
+---------------
+switch to 'main' branch and merge any new changes from remote 'main' branch.
+git checkout main
+git merge origin/main
+> NOTE: if I'm working with 'laptop' branch, ensure its updated:
+git checkout laptop
+git merge origin/laptop
+
+If new commits were made on eitherr device and want to sync them to remote:
+***git push origin main # For the main branch
+**git push origin laptop # For the laptop branch
+
+
+
+
+-----------------
+End of Document
+-----------------

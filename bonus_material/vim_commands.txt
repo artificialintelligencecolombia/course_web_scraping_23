@@ -1,0 +1,17 @@
+15/05/2024: VIM COMMANDS
+- i	-> insert before the cursor.
+- I	-> insert at the beginning of the file.
+- Esc	-> exit insert mode.
+- U	-> undo.
+
+- 0 | O	-> insert a new line ABOVE | BELOW.
+- yy	-> copy a line.
+- p | P	-> paste BEFORE | AFTER the cursor.
+- dd	-> delete a line.
+
+- gg	-> go to beginning of file.
+- G	-> go to end of file.
+
+- :wq	-> save & quit.
+- :q!	-> quit without saving.
+
