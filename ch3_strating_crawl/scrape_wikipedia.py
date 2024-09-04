@@ -21,7 +21,7 @@ def getLinks(article_url):
     
     
     return bsObj.find("div", {"id" : "bodyContent"}).findAll("a",href=re.compile("^(/wiki/)((?!:).)*$"))
-    # Find all the a tags within div->id:bodyContent
+    # Find all the a tags within div->id:bodyContent container tag. Filter this selection with those that has 'href' ATTRIBUTE. Filter them with the REGEX pattern.
     
 # Start the process by getting links from the Kevin Bacon Wikipedia page.
 links = getLinks("/wiki/Kevin_Bacon")
@@ -35,3 +35,10 @@ while len(links) > 0:
     #print(new_article)
     links = getLinks(new_article)
     print(links)
+    
+# The regex ^(/wiki/)((?!:).)*$ matches URLs that:
+# 1. Start with /wiki/.
+# 2. Do not contain a colon : (to exclude links to non-article pages like "Help:" or "Category:").
+
+# OBJECTIVE:
+# The script starts at Kevin Bacon's Wikipedia page, randomly follows a link to another Wikipedia page, prints the new page's URL, and continues this process indefinitely until it runs out of links to follow.
