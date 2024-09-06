@@ -26,3 +26,5 @@ with open("scrape_test_comparison.txt", "w") as file1:
     file1.write("- html.read() retrieves the HTML content as bytes.\n")
     file1.write("- UTF-8 decoding converts these bytes into a human-readable string.\n")
     file1.write("- A BeautifulSoup object is used to parse and manipulate the HTML, allowing for easy iteration and modification.\n")
+
+# .

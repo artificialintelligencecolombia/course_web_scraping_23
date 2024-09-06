@@ -1,0 +1,29 @@
+==============================
+KEYBOARD LANG SETTINGS
+==============================
+
+---------------------
+Step-by-step
+---------------------
+
+1.  sudo apt-get update
+2.  sudo apt-get install keyboard-configuration
+3. Reconfigure the keyboard settings:
+  sudo dpkg-reconfigure keyboard-configuration
+4. Follow the prompts
+5. Apply the changes
+  sudo service keyboard-setup restart
+6. Update current session:  
+   setxkbmap <layout>
+    <layout>: [fr, es, en]
+7. Verification:
+    setxkbmap -query    
+
+
+Another Section
+---------------
+
+
+-----------------
+End of Document
+-----------------

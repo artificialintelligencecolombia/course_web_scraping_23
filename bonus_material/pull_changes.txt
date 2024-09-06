@@ -1,0 +1,17 @@
+==============================
+PULL CHANGES FROM REMOTE REPO TO LOCAL
+==============================
+
+---------------------
+Process
+---------------------
+
+After updating the remote repo, If I want to pull the changes to local:
+
+1. cd path/to/your/local/repo
+
+2. git fetch origin 
+# Fetches updates from the remote repository named 'origin'. This cmd downloads the changes but doesnt apply them to the local branch yet.
+
+3. git merge origin/main  
+# To apply the fetched changes to the local 'main' branch.

@@ -1,0 +1,16 @@
+==============================
+VS CODE COMMANDS
+==============================
+
+---------------------
+Commands
+
+---------------------
+
+16/06/2024: VIM COMMANDS
+- ctrl + shift + e	-> Focus on explorer in sidebar.
+- ctrl + b -> Toggle between editor and sidebar.
+- ctrl + p -> Select and open a file from search bar.
+- ctrl + tab -> Navigate between opened files.
+- ctrl + w -> Closes a tab.
+- alt -> focus in menu.
