@@ -4,7 +4,6 @@ VS CODE COMMANDS
 
 ---------------------
 Commands
-
 ---------------------
 
 16/06/2024: VIM COMMANDS
