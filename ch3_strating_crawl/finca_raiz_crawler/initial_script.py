@@ -26,3 +26,11 @@ def getLinks(pageUrl):
 #                getLinks("")
 
 getLinks("")
+
+# OUTPUT: urllib.error.HTTPError: HTTP Error 403: Forbidden means the server rejected the request.
+# For security measures, the server blocks non-browser user agents.
+
+# Solution:
+# Modify the request to include a User-Agent header
+#    headers = {'User-Agent': 'Mozilla/5.0'}
+#    req = Request(url, headers=headers)
