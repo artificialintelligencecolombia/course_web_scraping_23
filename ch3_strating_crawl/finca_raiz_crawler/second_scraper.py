@@ -1,6 +1,7 @@
 # import libraries
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
+import pandas as pd
 
 def get_info(page_url):
     url = "https://www.fincaraiz.com.co/venta/fincas/san-vicente/antioquia"
@@ -21,12 +22,26 @@ def get_info(page_url):
     # print(description_spans)
 
     # Extract property descr. details
-    strong_list = []
+    data = []
     for span in description_spans:
         strong_tags = span.findAll("strong")
         for strong in strong_tags:
-            strong_list.append(strong.get_text())
+            data.append(strong.get_text())
 
+    # Original list of data where the elements are separated but in sequence of 3 for each r.e.)
+    # print(data)
+
+    # Use list comprehension to group every 3 consecutive elements into a sublist
+    # Breakdown:
+    # - data[i:i+3]: Slices the list into sublists of 3 elements (start at index i, end at i+3)
+    # - range(0, len(data), 3): Iterates over the list with steps of 3 (i = 0, 3, 6, ...)
+    result = [data[i:i + 3] for i in range(0, len(data), 3)]
+
+    df = pd.DataFrame(result,columns=['bedrooms', 'bathromms','area'])
+    # Print the resulting list of sublists
+    # print(df)
+
+    # Create a DataFrame with columns for Bedrooms, Bathrooms, and Size
     # print(strong_list)
 
     # Extract property prices
@@ -37,8 +52,10 @@ def get_info(page_url):
 
         if strong_tag:
             property_price.append(strong_tag.get_text(strip=True))
-    
-    return property_price
+    #print(property_price)
+    df = df.insert(0,"Price", property_price)
+    # print(df)
+    return df
 
-list = get_info("")
-# print(list)
+dataset = get_info("")
+# print(dataset)
