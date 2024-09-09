@@ -5,10 +5,10 @@ from bs4 import BeautifulSoup as bs
 # Its a common practice to store the url in a variable
 url = "http://pythonscraping.com/pages/page1.html"
 
-# Use urlopen to send a request to the specified URL.
+# Use urlopen method to send a request to the specified URL.
 html = urlopen(url)
 
-# The object 'html' is an HTTPResponse object from which you
+# The variable 'html' is an HTTPResponse object from which you
 # can read the content.
 # Read the content of the response FIRST and decode it to convert from bytes to a string.
 html_bytes = html.read()

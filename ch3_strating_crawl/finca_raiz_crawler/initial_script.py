@@ -30,3 +30,10 @@ getLinks("")
 # An HTTP 403 error (Forbidden) occurs when the server understands the request but refuses to authorize it. This can happen for several reasons, such as:
 
 # The server detects the request is from a bot (as in the second script without a User-Agent).
+# OUTPUT: urllib.error.HTTPError: HTTP Error 403: Forbidden means the server rejected the request.
+# For security measures, the server blocks non-browser user agents.
+
+# Solution:
+# Modify the request to include a User-Agent header
+#    headers = {'User-Agent': 'Mozilla/5.0'}
+#    req = Request(url, headers=headers)

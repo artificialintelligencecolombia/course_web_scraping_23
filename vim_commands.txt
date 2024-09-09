@@ -1,7 +1,0 @@
-15/05/2024: VIM COMMANDS
-- i	-> insert before the cursor.
-- I	-> insert at the beginning of the file.
-- Esc	-> exit insert mode.
-
-- :wq	-> save & quit.
-- :q!	-> quit without saving.

@@ -1,3 +1,10 @@
+==============================
+VIM COMMANDS
+==============================
+
+---------------------
+Commands
+---------------------
 15/05/2024: VIM COMMANDS
 - i	-> insert before the cursor.
 - I	-> insert at the beginning of the file.
