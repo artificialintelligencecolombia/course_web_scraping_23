@@ -1,5 +1,0 @@
-15/05/2024: Sort by date with 'ls' (BASH & LINUX) -> 'ls -lahRt': listing all files and directories within the current directory, sorted by date.
-
-15/05/2024: Append text to file from CLI (BASH & LINUX) -> cat >> filename.txt -> CTRL + D.
-
-15/05/2024: Pull local repo from remote (CONTROL V.) -> git branch -a (Shows local and remote branches) -> git pull origin main (Fetch and merges it).
