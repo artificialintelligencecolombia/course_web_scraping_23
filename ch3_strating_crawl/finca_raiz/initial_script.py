@@ -6,7 +6,7 @@ pages = set()
 
 def getLinks(pageUrl):
     global pages
-    html = urlopen("https://www.fincaraiz.com.co/venta/fincas/san-vicente/antioquia" + pageUrl)
+    html = urlopen("https://www.fincaraiz.com.co/venta/fincas/san-vicente/antioquia" + pageUrl) # SERVER REFUSES TO AUTHORIZE THE REQUEST. -> Solution: headers = {user_agent: mozilla}
     bsObj = BeautifulSoup(html)
     try:
         # print(bsObj.h1.get_text())
@@ -26,3 +26,7 @@ def getLinks(pageUrl):
 #                getLinks("")
 
 getLinks("")
+
+# An HTTP 403 error (Forbidden) occurs when the server understands the request but refuses to authorize it. This can happen for several reasons, such as:
+
+# The server detects the request is from a bot (as in the second script without a User-Agent).
