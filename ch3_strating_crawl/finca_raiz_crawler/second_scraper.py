@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 def get_info(page_url):
-    url = "https://www.fincaraiz.com.co/venta/fincas/san-vicente/antioquia"
+    url = "https://www.fincaraiz.com.co/venta/fincas/san-vicente/antioquia" + page_url
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'}
     req = Request(url, headers=headers)
 
@@ -14,12 +14,15 @@ def get_info(page_url):
 
     # Find all span tags regarding to property_price
     price_spans = bsObj.findAll("span", {"class": "ant-typography price heading heading-3 high"})
-    # print(price_spans)
+    #print(price_spans)
 
     # Find all span tags regarding to property description
     description_spans = bsObj.findAll("span", {"class": "body body-2 body-regular medium"})
+    #print(description_spans)
 
-    # print(description_spans)
+    # Fetch all strong tags related to the realtors
+    realtor_strongs = bsObj.findAll("strong", {"class": "body body-2 high"})
+    
 
     # Extract property descr. details
     data = []
@@ -28,7 +31,7 @@ def get_info(page_url):
         for strong in strong_tags:
             data.append(strong.get_text())
 
-    # Original list of data where the elements are separated but in sequence of 3 for each r.e.)
+    # Original list of data where the elements are mixed in sequence of 3 for each r.e.)
     # print(data)
 
     # Use list comprehension to group every 3 consecutive elements into a sublist
@@ -37,9 +40,9 @@ def get_info(page_url):
     # - range(0, len(data), 3): Iterates over the list with steps of 3 (i = 0, 3, 6, ...)
     result = [data[i:i + 3] for i in range(0, len(data), 3)]
 
-    df = pd.DataFrame(result,columns=['bedrooms', 'bathromms','area'])
+    df = pd.DataFrame(result,columns=['Bedrooms', 'Bathromms','Area'])
     # Print the resulting list of sublists
-    # print(df)
+    #print(df)
 
     # Create a DataFrame with columns for Bedrooms, Bathrooms, and Size
     # print(strong_list)
@@ -48,14 +51,28 @@ def get_info(page_url):
     property_price = []
     for span in price_spans:
         strong_tag = span.find("strong")
-        # print(strong_tag)
+        #print(strong_tag)
 
         if strong_tag:
             property_price.append(strong_tag.get_text(strip=True))
+
+    realtor = []
+    for strong in realtor_strongs:
+        realtor.append(strong.get_text())
+
+    # Insert property_price and realtor columns into df
+    
+    df.insert(0, 'Price', property_price)
+    df.insert(4, 'Realtor', realtor)
+
+
+    # Set display option to show all columns
+    pd.set_option('display.max_columns', None)
+
     #print(property_price)
-    df = df.insert(0,"Price", property_price)
-    # print(df)
+    #print(realtors)
+    #print(df)
     return df
 
-dataset = get_info("")
-# print(dataset)
+dataset = get_info("/pagina3")
+print(dataset)
