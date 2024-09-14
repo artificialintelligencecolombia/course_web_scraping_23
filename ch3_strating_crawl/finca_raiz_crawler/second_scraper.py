@@ -3,16 +3,17 @@ from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup
 import pandas as pd
 
+# -------------- MAKING REQUEST -> CREATE THE BSOBJECT --------------------------------
+url = "https://www.fincaraiz.com.co/venta/casas-y-apartamentos-y-fincas-y-cabanas-y-casas-lotes/rionegro/antioquia"
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'}
+req = Request(url, headers=headers)
+
+# Fetching and parsing html with bs4
+html = urlopen(req)
+bsObj = BeautifulSoup(html, "html.parser", from_encoding="utf-8")
+
 def get_info(page_url):
-    # -------------- MAKING REQUEST -> CREATE THE BSOBJECT --------------------------------
-    url = "https://www.fincaraiz.com.co/venta/fincas/san-vicente/antioquia" + page_url
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'}
-    req = Request(url, headers=headers)
-
-    # Fetching and parsing html with bs4
-    html = urlopen(req)
-    bsObj = BeautifulSoup(html, "html.parser", from_encoding="utf-8")
-
+    
     # --------------------FINDING THE LIST OF ELEMENTS
     # Find all span tags regarding to property_price
     price_spans = bsObj.findAll("span", {"class": "ant-typography price heading heading-3 high"})
@@ -24,6 +25,13 @@ def get_info(page_url):
 
     # Fetch all strong tags related to the realtors
     realtor_strongs = bsObj.findAll("strong", {"class": "body body-2 high"})
+    
+    # Fetch all strong tags related to the city
+    city_strongs = bsObj.findAll("strong", {"class": "lc-location body body-1 body-bold medium"})
+    #print(city_strongs)
+    
+    # Fetch all span tags related to the type of property
+    proptype_spans = bsObj.findAll("span", {"class": "lc-title body body-2 body-regular medium"})
     
     # ------------------ PYTHON LISTST -----------------------
     # Extract property descr. details
@@ -55,6 +63,16 @@ def get_info(page_url):
     for strong in realtor_strongs:
         realtor.append(strong.get_text())
     
+    # Create the list for the city where the property is located    
+    city = [] 
+    for strong in city_strongs:
+        city.append(strong.get_text())
+    
+    # Create the column list for the type of property
+    property_type = []
+    for span in proptype_spans:
+        property_type.append(span.get_text())    
+        
     # -------------- CREATION OF DATAFRAME, APPENDING COLUMNS
     df = pd.DataFrame(result,columns=['Bedrooms', 'Bathromms','Area'])
     # Create a DataFrame with columns for Bedrooms, Bathrooms, and Size
@@ -65,7 +83,9 @@ def get_info(page_url):
 
     df.insert(0, 'Price', property_price)
     df.insert(4, 'Realtor', realtor)
-    # Insert property_price and realtor columns into df
+    df.insert(5, 'City', city)
+    df.insert(6, 'Type', property_type)
+    # Insert property_price, realtor and so on columns into df
 
     # Set display option to show all columns
     pd.set_option('display.max_columns', None)
@@ -75,5 +95,7 @@ def get_info(page_url):
     #print(df)
     return df
 
-dataset = get_info("/pagina3")
+# ------------ LOOP FOR MULTIPLE SITES ------------
+
+dataset = get_info("/pagina1")
 print(dataset)
