@@ -4,15 +4,17 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # -------------- MAKING REQUEST -> CREATE THE BSOBJECT --------------------------------
-url = "https://www.fincaraiz.com.co/venta/casas-y-apartamentos-y-fincas-y-cabanas-y-casas-lotes/rionegro/antioquia"
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'}
-req = Request(url, headers=headers)
-
-# Fetching and parsing html with bs4
-html = urlopen(req)
-bsObj = BeautifulSoup(html, "html.parser", from_encoding="utf-8")
+init_url = "https://www.fincaraiz.com.co/venta/casas-y-apartamentos-y-fincas-y-cabanas-y-casas-lotes/rionegro/antioquia"
 
 def get_info(page_url):
+    
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36'}
+    
+    req = Request(page_url, headers=headers)
+    
+    # Fetching and parsing html with bs4
+    html = urlopen(req)
+    bsObj = BeautifulSoup(html, "html.parser", from_encoding="utf-8")
     
     # --------------------FINDING THE LIST OF ELEMENTS
     # Find all span tags regarding to property_price
@@ -95,7 +97,14 @@ def get_info(page_url):
     #print(df)
     return df
 
-# ------------ LOOP FOR MULTIPLE SITES ------------
+# ------------ LIST OF PAGINATION AND DATA MERGING ------------
 
-dataset = get_info("/pagina1")
-print(dataset)
+dataframes = []
+
+for i in range(1,30):
+    dataset = get_info(init_url + f'/pagina{i}')
+    dataframes.append(dataset) # Append each dataset to the list
+    
+final_df = pd.concat(dataframes, ignore_index=True)
+
+final_df.to_csv('./real_estate_data.csv')
