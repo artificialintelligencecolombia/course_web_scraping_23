@@ -101,7 +101,7 @@ def get_info(page_url):
 
 dataframes = []
 
-for i in range(1,30):
+for i in range(1,32):
     dataset = get_info(init_url + f'/pagina{i}')
     dataframes.append(dataset) # Append each dataset to the list
     
